@@ -1,12 +1,13 @@
 import structlog.processors
 from structlog.typing import Processor
+from typing import Optional
 
 from . import errors, processors
 
 
 def build_processors(
-    service: str | None = None,
-    version: str | None = None,
+    service: Optional[str] = None,
+    version: Optional[str] = None,
 ) -> list[Processor]:
     procs = []
 

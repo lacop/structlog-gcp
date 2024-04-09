@@ -2,12 +2,13 @@ import os
 
 import structlog
 from structlog.typing import EventDict, Processor, WrappedLogger
+from typing import Optional
 
 from .types import CLOUD_LOGGING_KEY, ERROR_EVENT_TYPE, SOURCE_LOCATION_KEY
 
 
 class ServiceContext:
-    def __init__(self, service: str | None = None, version: str | None = None) -> None:
+    def __init__(self, service: Optional[str] = None, version: Optional[str] = None) -> None:
         # https://cloud.google.com/functions/docs/configuring/env-var#runtime_environment_variables_set_automatically
         if service is None:
             service = os.environ.get("K_SERVICE", "unknown service")
